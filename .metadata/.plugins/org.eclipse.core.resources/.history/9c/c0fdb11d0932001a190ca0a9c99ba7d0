@@ -1,0 +1,37 @@
+package com.zensar.payrollmodule.resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.zensar.payrollmodule.entity.SalaryPaid;
+import com.zensar.payrollmodule.entity.SalaryPaidEntity;
+import com.zensar.payrollmodule.service.SalaryPaidService;
+
+@RestController
+@RequestMapping("/payroll")
+public class SalaryPaidResource {
+	
+	@Autowired
+	private SalaryPaidService salaryPaidService;
+
+	@GetMapping("/getsalary")
+	public SalaryPaid getPaidSalary(@RequestBody SalaryPaidEntity salaryPaidEntity) {
+		
+		System.out.println(salaryPaidEntity.getEmployeeId());
+		System.out.println(salaryPaidEntity.getDate());
+		
+		return salaryPaidService.getPaidSalary(salaryPaidEntity);
+	}
+	
+	/*
+	 * @PostMapping("/salary") public SalaryPaid addPaidSalary() {
+	 * 
+	 * return salaryPaidService.addPaidSalary(); }
+	 */
+	
+	
+}

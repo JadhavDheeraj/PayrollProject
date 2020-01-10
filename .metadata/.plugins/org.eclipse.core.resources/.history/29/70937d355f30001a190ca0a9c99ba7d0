@@ -1,0 +1,5 @@
+package com.zensar.payrollmodule.entity;
+
+public class Employee {
+
+}

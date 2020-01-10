@@ -1,0 +1,91 @@
+package com.zensar.payrollmodule.workmanagement;
+
+import javax.persistence.Entity;
+
+@Entity
+public class WorkManagement {
+
+	private int employeeId;
+	private LocalDate date;
+	private int departmentId;
+	private int workCompletion;
+	private int roldId;
+	public WorkManagement() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public WorkManagement(int employeeId, LocalDate date, int departmentId, int workCompletion, int roldId) {
+		super();
+		this.employeeId = employeeId;
+		this.date = date;
+		this.departmentId = departmentId;
+		this.workCompletion = workCompletion;
+		this.roldId = roldId;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + departmentId;
+		result = prime * result + employeeId;
+		result = prime * result + roldId;
+		result = prime * result + workCompletion;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		WorkManagement other = (WorkManagement) obj;
+		if (departmentId != other.departmentId)
+			return false;
+		if (employeeId != other.employeeId)
+			return false;
+		if (roldId != other.roldId)
+			return false;
+		if (workCompletion != other.workCompletion)
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "WorkManagement [employeeId=" + employeeId + ", departmentId=" + departmentId + ", workCompletion="
+				+ workCompletion + ", roldId=" + roldId + "]";
+	}
+	public int getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
+	public LocalDate getDate() {
+		return date;
+	}
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+	public int getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
+	public int getWorkCompletion() {
+		return workCompletion;
+	}
+	public void setWorkCompletion(int workCompletion) {
+		this.workCompletion = workCompletion;
+	}
+	public int getRoldId() {
+		return roldId;
+	}
+	public void setRoldId(int roldId) {
+		this.roldId = roldId;
+	}
+	
+	
+}

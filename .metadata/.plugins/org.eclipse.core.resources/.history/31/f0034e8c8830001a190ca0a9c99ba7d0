@@ -1,0 +1,19 @@
+package com.zensar.payrollmodule.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.zensar.payrollmodule.entity.EmployeeRoleMapping;
+import com.zensar.payrollmodule.repository.EmployeeRoleMappingRepository;
+
+
+@Service
+public class EmployeeAndRoleMappingImpl {
+	
+	@Autowired
+	private EmployeeRoleMappingRepository employeeRoleMappingRepository;
+	
+	public EmployeeRoleMapping addRoleForEmployee(EmployeeRoleMapping employeeRoleMapping) {
+		 return employeeRoleMappingRepository.save(employeeRoleMapping);
+	}
+}

@@ -1,0 +1,20 @@
+package com.zensar.payrollmodule.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.zensar.payrollmodule.entity.Salary_Structure;
+import com.zensar.payrollmodule.repository.SalaryStructureRepository;
+
+@Service
+public class SalaryStructureImpl implements SalaryStructureService {
+
+	@Autowired
+	private SalaryStructureRepository salaryStructureRepository;
+	
+	@Override
+	public Salary_Structure addRoleAndSalary(Salary_Structure salaryStructure) {
+
+		return salaryStructureRepository.save(salaryStructure);
+	}
+
+}

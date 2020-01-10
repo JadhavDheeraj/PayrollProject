@@ -1,0 +1,7 @@
+package com.zensar.payrollmodule.workmanagement;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface WorkManagementRepository extends CrudRepository<T, ID> {
+
+}

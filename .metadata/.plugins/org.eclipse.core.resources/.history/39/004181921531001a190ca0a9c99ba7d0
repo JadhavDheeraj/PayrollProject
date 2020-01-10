@@ -1,0 +1,39 @@
+package com.zensar.payrollmodule.controllertest;
+
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import com.zensar.payrollmodule.entity.Employee;
+import com.zensar.payrollmodule.repository.EmployeeRepository;
+import com.zensar.payrollmodule.resource.EmployeeResource;
+import com.zensar.payrollmodule.service.EmployeeService;
+
+@RunWith(MockitoJUnitRunner.class)
+public class EmployeeControllerTest {
+	
+	@InjectMocks
+	EmployeeResource employeeResource;
+	
+	@Mock
+	EmployeeService employeeService;
+	
+	@Test
+	public void addEmployeeTest() {
+		
+		MockHttpServletRequest request = new MockHttpServletRequest();
+		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+		
+		when(employeeService.addEmployee(employee)))
+		
+	}
+
+}

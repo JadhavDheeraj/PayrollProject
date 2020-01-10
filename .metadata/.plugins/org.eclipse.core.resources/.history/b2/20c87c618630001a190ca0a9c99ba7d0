@@ -1,0 +1,5 @@
+package com.zensar.payrollmodule.resource;
+
+public class SalaryPaidResource {
+
+}

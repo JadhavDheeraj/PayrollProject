@@ -1,0 +1,32 @@
+package com.zensar.payrollmodule.servicetest;
+
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import com.zensar.payrollmodule.entity.Employee;
+import com.zensar.payrollmodule.resource.EmployeeResource;
+import com.zensar.payrollmodule.service.EmployeeService;
+
+@RunWith(MockitoJUnitRunner.class)
+public class EmployeeServiceTest {
+
+	@InjectMocks
+	EmployeeResource employeeResource;
+	
+	@Mock
+	EmployeeService employeeService;
+	
+	@Test
+    public void getEmployeesByIdTest()
+    {
+        when(employeeService.getAllEmployees()).thenReturn(10);
+    }
+}

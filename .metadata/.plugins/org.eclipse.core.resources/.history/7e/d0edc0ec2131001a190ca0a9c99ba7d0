@@ -1,0 +1,5 @@
+package com.zensar.payrollmodule.resourcetest;
+
+public class DatabaseConnectionTest {
+
+}

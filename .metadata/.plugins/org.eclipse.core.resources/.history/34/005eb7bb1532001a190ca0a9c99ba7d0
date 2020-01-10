@@ -1,0 +1,127 @@
+package com.zensar.travelling.controller;
+
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
+import com.zensar.travelling.entity.EmployeeTravelHistory;
+import com.zensar.travelling.entity.LocationKnowldge;
+import com.zensar.travelling.service.IEmployeeTravelHistoryService;
+import com.zensar.travelling.service.IShortestPathService;
+import com.zensar.travelling.service.exception.JSONData;
+
+@RestController
+public class HomeController {
+
+	@Autowired
+	IShortestPathService shortestpathservice;
+	
+	@Autowired
+	IEmployeeTravelHistoryService employeeTravelHistoryService;
+	
+	@Autowired
+	private EurekaClient eurekaClient;
+	
+	@Autowired
+	private RestTemplateBuilder restTemplateBuilder;
+	
+	
+	@RequestMapping
+	public String get()
+	{
+		final String uri = "http://localhost:9000";
+		  
+		  RestTemplate template = new RestTemplate();
+		  
+		  String temp =template.getForObject(uri, String.class);
+		return temp;
+	}
+	
+	@GetMapping("/getdistance")
+	public JSONData getShortestPathDistance(@RequestBody LocationKnowldge locationKnowldge )
+	{
+		System.out.println(locationKnowldge);
+		return shortestpathservice.getShortestPathDistance(locationKnowldge.getSourceCity(),locationKnowldge.getDestinationCity());
+		
+	}
+	
+	@PostMapping("/savetravelhistory")
+	public JSONData savetravelhistory(@RequestBody EmployeeTravelHistory travelHistory )
+	{
+		System.out.println(travelHistory);
+		return employeeTravelHistoryService.savetravelhistory(travelHistory);	
+	}
+	
+	@GetMapping("/travelhistory")
+	public JSONData getTravelHistory(@RequestParam(name="empid")Integer eid)
+	{
+		System.out.println(eid);
+		return employeeTravelHistoryService.getTravelHistory(eid);	
+	}
+	
+	@GetMapping("/travelhistorybydate")
+	public JSONData getTravelHistoryByDate(@RequestParam(name="empid")String empid,
+										   @RequestParam(name="startdate")String startdate,
+										   @RequestParam(name="enddate")String enddate)
+	{
+		System.out.println(empid+" "+startdate+" "+enddate);
+		
+		Integer convertEmpid=Integer.parseInt(empid);
+		LocalDate convertStartdate=LocalDate.parse(startdate);		
+		LocalDate convertEndDate=LocalDate.parse(enddate);
+		return employeeTravelHistoryService.getTravelHistoryByDate(convertEmpid,convertStartdate,convertEndDate);	
+	}
+		
+	
+	@GetMapping("/travelallowancebydate")
+	public Double getTravelAllowanceByDate(@RequestParam(name="empid")String empid,
+										     @RequestParam(name="startdate")String startdate,
+										     @RequestParam(name="enddate")String enddate)
+	{
+		//System.out.println(empid+" "+startdate+" "+enddate);
+		
+		
+		  RestTemplate restTemplate = restTemplateBuilder.build();
+		  
+		  InstanceInfo info = eurekaClient.getNextServerFromEureka("payroll-service",
+		  false);
+		  
+		  String homePageUrl = info.getHomePageUrl() + "/payroll/getsalary";
+		  
+		  System.out.println("homePageUrl    ---->"+homePageUrl);
+		  
+		  ResponseEntity<String> exchange = restTemplate.exchange(homePageUrl,
+		  HttpMethod.GET, null, String.class);
+		  
+		  String entity = exchange.getBody();
+		  
+		  System.out.println("Entity ========>: " + entity);
+		 
+		
+		Integer convertEmpid=Integer.parseInt(empid);
+		LocalDate convertStartdate=LocalDate.parse(startdate);		
+		LocalDate convertEndDate=LocalDate.parse(enddate);
+		
+		JSONData travelAllowanceByDate = employeeTravelHistoryService.getTravelAllowanceByDate(convertEmpid,convertStartdate,convertEndDate);
+		
+		Double travelAllowance = (Double)travelAllowanceByDate.getResult();
+		
+		
+		
+		return travelAllowance;
+				}
+	
+}
+	

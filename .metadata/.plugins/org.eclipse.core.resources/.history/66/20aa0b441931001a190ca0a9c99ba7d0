@@ -1,0 +1,52 @@
+package com.zensar.payrollmodule.servicetest;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import com.zensar.payrollmodule.entity.Employee;
+import com.zensar.payrollmodule.repository.EmployeeRepository;
+import com.zensar.payrollmodule.service.EmployeeService;
+
+@RunWith(MockitoJUnitRunner.class)
+public class EmployeeServiceTest {
+
+	@InjectMocks
+	EmployeeService employeeService;
+	
+	@Mock
+	EmployeeRepository employeeRepository;
+	
+	@Test
+    public void getAllEmployeesTest()
+    {
+        List<Employee> list = new ArrayList<Employee>();
+        LocalDate date =LocalDate.parse("1977-04-24");
+        Employee empOne = new Employee(1, "John", "Cena",date ,"Pune");
+        date = date.parse("1980-10-15");
+        
+        Employee empTwo = new Employee(2, "Rahul", "Dravid",date ,"Banglore");
+       
+        list.add(empOne);
+        list.add(empTwo);
+         
+        when(employeeRepository.findAll()).thenReturn(list);
+         
+        //test
+        List<Employee> empList = (List<Employee>) employeeService.getAllEmployees();
+         
+        assertEquals(3, empList.size());
+        verify(employeeRepository, times(1)).findAll();
+    }
+}

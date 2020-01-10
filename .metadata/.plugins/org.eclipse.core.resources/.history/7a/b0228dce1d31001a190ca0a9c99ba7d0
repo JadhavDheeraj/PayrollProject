@@ -1,0 +1,44 @@
+package com.zensar.payrollmodule.resourcetest;
+
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+
+import java.time.LocalDate;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import com.zensar.payrollmodule.entity.Employee;
+import com.zensar.payrollmodule.resource.EmployeeResource;
+import com.zensar.payrollmodule.service.EmployeeService;
+
+@RunWith(MockitoJUnitRunner.class)
+public class EmployeeResourceTest {
+
+	@InjectMocks
+	EmployeeResource employeeResource;
+	
+	@Mock
+	EmployeeService employeeService;
+	
+	@Test
+    public void getEmployeesByIdTest()
+    {
+		LocalDate date = LocalDate.parse("1977-04-24");
+        when(employeeService.getEmployeeById(1)).thenReturn(new Employee(1,"Sachin","Tendulkar",date,"Mumbai"));
+        assertEquals(new Employee(1,"Sachin","Tendulkar",date,"Mumbai"), employeeService.getEmployeeById(1));
+    }
+	
+	@Test
+    public void addEmployeesTest()
+    {
+		LocalDate date = LocalDate.parse("1980-05-25");
+		Employee employee = new Employee(2,"Rahul","Dravid",date,"Banglore");
+        when(employeeService.addEmployee(employee)).thenReturn(new Employee(2,"Rahul","Dravid",date,"Banglore"));
+        assertEquals(employee.getFirstName(), employeeService.addEmployee(employee).getFirstName());
+    }
+}

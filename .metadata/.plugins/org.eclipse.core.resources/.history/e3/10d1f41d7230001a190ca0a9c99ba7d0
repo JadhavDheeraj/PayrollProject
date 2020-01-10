@@ -1,0 +1,12 @@
+package com.zensar.payrollmodule.service;
+
+import com.zensar.payrollmodule.entity.Salary_Structure;
+
+public interface SalaryStructureService {
+
+	public Salary_Structure addRoleAndSalary(Salary_Structure salaryStructure);
+	
+	public Salary_Structure getSalaryStructureByRoleId(int roleId);
+	
+	public Iterable<Salary_Structure> getAllRolesAndSalaryStructure();
+}

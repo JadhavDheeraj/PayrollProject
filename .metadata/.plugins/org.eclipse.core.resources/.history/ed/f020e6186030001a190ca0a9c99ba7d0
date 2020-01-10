@@ -1,0 +1,68 @@
+package com.zensar.payrollmodule.entity;
+
+import java.time.LocalDate;
+
+import javax.persistence.Id;
+
+public class Employee {
+	
+	@Id
+	private int employeeId;
+	
+	private String firstName;
+	private String lastName;
+	private LocalDate dateOfBirth;
+	private String currentLocation;
+	
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Employee(int employeeId, String firstName, String lastName, LocalDate dateOfBirth, String currentLocation) {
+		super();
+		this.employeeId = employeeId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.currentLocation = currentLocation;
+	}
+	public int getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	public String getCurrentLocation() {
+		return currentLocation;
+	}
+	public void setCurrentLocation(String currentLocation) {
+		this.currentLocation = currentLocation;
+	}
+	@Override
+	public String toString() {
+		return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", dateOfBirth=" + dateOfBirth + ", currentLocation=" + currentLocation + "]";
+	}
+	
+	
+	
+
+}

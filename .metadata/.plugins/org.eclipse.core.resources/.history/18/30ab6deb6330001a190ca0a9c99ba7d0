@@ -1,0 +1,10 @@
+package com.zensar.payrollmodule.service;
+
+import com.zensar.payrollmodule.entity.Employee;
+
+public interface EmployeeService {
+
+	public Employee addEmployee(Employee employee);
+	
+	public Employee getEmployeeById(int empId);
+}

@@ -1,0 +1,60 @@
+package com.zensar.payrollmodule.entity;
+
+public class Salary_Structure {
+	
+	private int roldId;
+	private String roleName;
+	private double basic;
+	private double hra;
+	private int performanceLevel;
+	public Salary_Structure() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Salary_Structure(int roldId, String roleName, double basic, double hra, int performanceLevel) {
+		super();
+		this.roldId = roldId;
+		this.roleName = roleName;
+		this.basic = basic;
+		this.hra = hra;
+		this.performanceLevel = performanceLevel;
+	}
+	public int getRoldId() {
+		return roldId;
+	}
+	public void setRoldId(int roldId) {
+		this.roldId = roldId;
+	}
+	public String getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+	public double getBasic() {
+		return basic;
+	}
+	public void setBasic(double basic) {
+		this.basic = basic;
+	}
+	public double getHra() {
+		return hra;
+	}
+	public void setHra(double hra) {
+		this.hra = hra;
+	}
+	public int getPerformanceLevel() {
+		return performanceLevel;
+	}
+	public void setPerformanceLevel(int performanceLevel) {
+		this.performanceLevel = performanceLevel;
+	}
+	@Override
+	public String toString() {
+		return "Salary_Structure [roldId=" + roldId + ", roleName=" + roleName + ", basic=" + basic + ", hra=" + hra
+				+ ", performanceLevel=" + performanceLevel + "]";
+	}
+	
+	
+
+}

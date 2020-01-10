@@ -1,0 +1,14 @@
+server.port=8761
+
+spring.application.name=eureka-server
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false
+
+eureka.instance.prefer-ip-address=true
+eureka.instance.hostname=eureka
+
+eureka.client.service-url.defaultZone=http://10.42.12.50:8761/eureka
+
+
+spring.cloud.discovery.client.simple.local.uri=http://10.42.12.186
+#eureka.instance.appname=10.42.12.124

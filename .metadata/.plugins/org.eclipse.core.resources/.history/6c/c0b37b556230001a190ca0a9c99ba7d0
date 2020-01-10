@@ -1,0 +1,19 @@
+package com.zensar.payrollmodule.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.zensar.payrollmodule.entity.Employee;
+import com.zensar.payrollmodule.repository.EmployeeRepository;
+
+public class EmployeeServiceImpl {
+	
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
+	public Employee addEmployee(Employee employee) {
+		return employeeRepository.save(employee);
+	}
+	
+	
+
+}

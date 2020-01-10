@@ -1,0 +1,56 @@
+package com.zensar.payrollmodule.service;
+
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.zensar.payrollmodule.entity.Employee;
+import com.zensar.payrollmodule.entity.SalaryPaid;
+import com.zensar.payrollmodule.entity.SalaryPaidEntity;
+import com.zensar.payrollmodule.repository.EmployeeRepository;
+import com.zensar.payrollmodule.repository.EmployeeRoleMappingRepository;
+import com.zensar.payrollmodule.repository.SalaryPaidRepository;
+import com.zensar.payrollmodule.repository.SalaryStructureRepository;
+
+public class SalaryPaidServiceImpl implements SalaryPaidService {
+
+	@Autowired
+	private SalaryPaidRepository salaryPaidRepository;
+	
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private SalaryStructureRepository salaryStructureRepository;
+	
+	private EmployeeRoleMappingRepository employeeRoleMappingRepository;
+
+	@Override
+	public SalaryPaid getPaidSalary(SalaryPaidEntity salaryPaidEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SalaryPaid addPaidSalary() {
+		
+		SalaryPaid salaryPaid = new SalaryPaid();
+		SalaryPaidEntity salaryPaidEntity =new SalaryPaidEntity();
+		
+		for(Employee e : employeeRepository.findAll()) {
+			salaryPaidEntity.setEmployeeId(e.getEmployeeId());
+			salaryPaidEntity.setDate(LocalDate.now().withDayOfMonth(1));
+			
+			salaryPaid.setBase(salaryStructureRepository.findById(id));
+		}
+		
+		salaryPaid.setEntity(salaryPaidEntity);
+		
+		return null;
+	}
+	
+	
+	
+	
+	
+}

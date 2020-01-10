@@ -1,0 +1,21 @@
+package com.zensar.payrollmodule.workmanagement;
+
+import java.time.LocalDate;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class WorkManagement {
+
+	@Id
+	private int work_Id;
+
+	private int employeeId;
+	private LocalDate date;
+	private int departmentId;
+	private int workCompletion;
+	private int roldId;
+
+	
+}

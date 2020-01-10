@@ -1,0 +1,28 @@
+package com.zensar.payrollmodule.resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.zensar.payrollmodule.entity.EmployeeRoleMapping;
+import com.zensar.payrollmodule.service.EmployeeRoleMappingService;
+
+@RestController
+public class EmployeeAndRoleMappingResource {
+
+	@Autowired
+	private EmployeeRoleMappingService employeeRoleMappingService;
+
+	public EmployeeRoleMapping addRole(EmployeeRoleMapping employeeRoleMapping) {
+
+		return employeeRoleMappingService.addRole(employeeRoleMapping);
+	}
+
+	public EmployeeRoleMapping getRoleById(int empId);
+
+	public Iterable<EmployeeRoleMapping> getAllRoles();
+
+	public EmployeeRoleMapping updateRole(int empId, EmployeeRoleMapping employeeRoleMapping);
+
+	public void deleteRole(int empId);
+
+}

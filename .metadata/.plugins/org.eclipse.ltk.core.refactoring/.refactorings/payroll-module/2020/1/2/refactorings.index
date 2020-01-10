@@ -1,0 +1,14 @@
+1578300577295	Rename type 'PayrollRepository'
+1578300762560	Rename package 'com.zensar.payrollmodule.controller'
+1578314924770	Rename type 'Salary_Structure'
+1578316508557	Rename type 'EmployeeRoleMapping'
+1578377931072	Delete element
+1578380365215	Rename type 'EmployeeServiceTest'
+1578380381801	Rename package 'com.zensar.payrollmodule.servicetest'
+1578380387932	Delete element
+1578386303115	Delete element
+1578389200412	Delete element
+1578390499511	Delete element
+1578390676707	Rename type 'RepositoryTest'
+1578401455444	Delete element
+1578401708149	Rename type 'WorkManagementEntity'

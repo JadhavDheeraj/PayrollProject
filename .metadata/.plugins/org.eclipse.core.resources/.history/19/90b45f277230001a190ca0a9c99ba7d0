@@ -1,0 +1,17 @@
+package com.zensar.payrollmodule.service;
+
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.zensar.payrollmodule.entity.Salary_Structure;
+
+public interface SalaryStructureService {
+
+	public Salary_Structure addRoleAndSalary(Salary_Structure salaryStructure);
+	
+	public Salary_Structure getSalaryStructureByRoleId(int roleId);
+	
+	public Iterable<Salary_Structure> getAllRolesAndSalaryStructure();
+	
+	public Salary_Structure updateRoleAndSalary(@PathVariable int roleId,@RequestBody Salary_Structure salaryStructure)
+}

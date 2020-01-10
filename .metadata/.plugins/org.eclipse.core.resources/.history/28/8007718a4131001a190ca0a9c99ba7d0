@@ -1,0 +1,14 @@
+package com.zensar.payrollmodule.service;
+
+import com.zensar.payrollmodule.entity.SalaryPaid;
+import com.zensar.payrollmodule.entity.SalaryPaidEntity;
+
+public class SalaryPaidServiceImpl implements SalaryPaidService {
+
+	@Override
+	public SalaryPaid getPaidSalary(SalaryPaidEntity salaryPaidEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

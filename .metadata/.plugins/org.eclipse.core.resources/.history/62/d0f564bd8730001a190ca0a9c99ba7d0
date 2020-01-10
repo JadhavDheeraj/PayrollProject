@@ -1,0 +1,15 @@
+package com.zensar.payrollmodule.resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.zensar.payrollmodule.service.EmployeeRoleMappingService;
+
+@RestController
+public class EmployeeAndRoleMappingResource {
+	
+	@Autowired
+	private EmployeeRoleMappingService employeeRoleMappingService;
+	
+
+}

@@ -1,0 +1,86 @@
+package com.zensar.payrollmodule.resourcetest;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import com.zensar.payrollmodule.entity.Employee;
+import com.zensar.payrollmodule.resource.EmployeeResource;
+import com.zensar.payrollmodule.service.EmployeeService;
+
+@RunWith(MockitoJUnitRunner.class)
+public class EmployeeResourceTest {
+
+	@InjectMocks
+	EmployeeResource employeeResource;
+
+	@Mock
+	EmployeeService employeeService;
+
+	@Test
+	public void getEmployeesByIdTest() {
+		LocalDate date = LocalDate.parse("1977-04-24");
+		when(employeeService.getEmployeeById(1)).thenReturn(new Employee(1, "Sachin", "Tendulkar", date, "Mumbai"));
+		assertEquals(new Employee(1, "Sachin", "Tendulkar", date, "Mumbai"), employeeService.getEmployeeById(1));
+	}
+
+	@Test
+	public void addEmployeesTest() {
+		LocalDate date = LocalDate.parse("1980-05-25");
+
+		Employee employee = new Employee(2, "Rahul", "Dravid", date, "Banglore");
+
+		when(employeeService.addEmployee(employee)).thenReturn(new Employee(2, "Rahul", "Dravid", date, "Banglore"));
+		assertEquals(employee, employeeService.addEmployee(employee));
+
+	}
+
+	@Test
+	public void updateEmployeesTest() {
+		LocalDate date = LocalDate.parse("1947-08-15");
+		
+		Employee employee = new Employee(2, "Rahul", "Dravid", date, "Banglore");
+
+		Employee employee1 = new Employee(2, "MS", "Dhoni", date, "Ranchi");
+
+		when(employeeService.updateEmployee(2, employee)).thenReturn(new Employee(2, "MS", "Dhoni", date, "Ranchi"));
+		assertEquals(employee1, employeeService.updateEmployee(2, employee));
+
+	}
+
+	@Test
+	public void getAllEmployeesTest() {
+		LocalDate date = LocalDate.parse("1947-08-15");
+		
+		List<Employee> list = new ArrayList<Employee>();
+		Employee empOne = new Employee(1, "Sachin", "Tendulkar", date, "Mumbai");
+		Employee empTwo = new Employee(2, "MS", "Dhoni", date, "Ranchi");
+		Employee empThree = new Employee(3, "Rahul", "Dravid", date, "Banglore");
+
+		list.add(empOne);
+		list.add(empTwo);
+		list.add(empThree);
+
+		when(employeeService.getAllEmployees()).thenReturn(list);
+
+		// test
+		List<Employee> empList = (List<Employee>) employeeService.getAllEmployees();
+
+		assertEquals(3, empList.size());
+		verify(employeeService, times(1)).getAllEmployees();
+
+	}
+
+	
+}

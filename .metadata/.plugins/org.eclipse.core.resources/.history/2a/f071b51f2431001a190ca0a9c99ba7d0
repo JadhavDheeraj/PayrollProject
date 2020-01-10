@@ -1,0 +1,39 @@
+package com.zensar.payrollmodule.resourcetest;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import com.zensar.payrollmodule.repository.EmployeeRepository;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+
+import java.time.LocalDate;
+
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
+@RunWith(MockitoJUnitRunner.class)
+@DataJpaTest
+public class DatabaseConnectionTest {
+
+	@Value("${spring.datasource.username}")
+	private String username;
+	
+	@Value("${spring.datasource.password}")
+	private String password;
+	
+	@Value("${jdbc:mysql://localhost:3306/payroll}")
+	private String url;
+	
+	private String createTable
+	
+	
+	@Test
+	public void getDatabaseConnection() {
+		when()
+	}
+}

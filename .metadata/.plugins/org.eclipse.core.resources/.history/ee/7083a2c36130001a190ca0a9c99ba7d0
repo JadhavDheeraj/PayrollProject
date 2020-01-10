@@ -1,0 +1,5 @@
+package com.zensar.payrollmodule.service;
+
+public class EmployeeServiceImpl {
+
+}

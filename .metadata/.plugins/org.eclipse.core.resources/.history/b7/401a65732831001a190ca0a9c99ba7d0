@@ -1,0 +1,48 @@
+package com.zensar.payrollmodule.resourcetest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+@RunWith(MockitoJUnitRunner.class)
+public class DatabaseConnectionTest {
+
+	//@Value("${spring.datasource.username}")
+	private String username="root";
+	
+	//@Value("${spring.datasource.password}")
+	private String password="Temp1234";
+	
+	//@Value("${spring.datasource.url}")
+	private String url="jdbc:mysql://localhost:3306/payroll";
+	
+	String query ="SELECT * FROM employee";
+	
+	
+	@Test
+	public void getDatabaseConnection()  throws SQLException{
+		
+		System.out.println(url);
+		
+		System.out.println(username);
+		System.out.println(password);
+			Connection con = DriverManager.getConnection(url,username,password);
+			
+			Statement statement = con.createStatement();
+			 
+			boolean b = statement.execute(query);
+			
+			when(statement.execute("SELECT * FROM employee")).thenReturn(true);
+			assertEquals(true, statement.execute(query));
+	}
+}

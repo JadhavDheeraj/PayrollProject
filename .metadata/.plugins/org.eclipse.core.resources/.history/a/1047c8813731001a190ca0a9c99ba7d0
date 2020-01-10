@@ -1,0 +1,41 @@
+package com.zensar.payrollmodule.resourcetest;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import com.zensar.payrollmodule.entity.Employee;
+import com.zensar.payrollmodule.entity.SalaryStructure;
+import com.zensar.payrollmodule.resource.SalaryStructureResource;
+import com.zensar.payrollmodule.service.SalaryStructureService;
+
+@RunWith(MockitoJUnitRunner.class)
+public class SalaryStructureResourceTest {
+	
+	@InjectMocks
+	SalaryStructureResource salaryStructureResource;
+	
+	@Mock
+	SalaryStructureService salaryStructureService;
+
+	@Test
+	public void getSalaryStructureByRoleId() {
+		
+		SalaryStructure salaryStructure = new SalaryStructure(1,"HR",18000.00,12000.00,10);
+		
+		when(salaryStructureService.addRoleAndSalary(salaryStructure)).thenReturn(new SalaryStructure(1,"HR",18000.00,12000.00,10));
+		assertEquals(salaryStructure, salaryStructureService.addRoleAndSalary(salaryStructure));
+	}
+	
+}

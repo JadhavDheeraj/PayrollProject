@@ -1,0 +1,34 @@
+package com.zensar.payrollmodule.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.zensar.payrollmodule.entity.SalaryPaid;
+import com.zensar.payrollmodule.repository.SalaryPaidRepository;
+
+public class SalaryPaidServiceImpl implements SalaryPaidService {
+
+	@Autowired
+	private SalaryPaidRepository salaryPaidRepository;
+
+	@Override
+	public SalaryPaid getPaidSalary(SalaryPaidEntity salaryPaidEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SalaryPaid addPaidSalary(SalaryPaid salaryPaid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/*
+	 * @Override public SalaryPaid getPaidSalary(SalaryPaidEntity salaryPaidEntity)
+	 * {
+	 * 
+	 * return salaryPaidRepository.; }
+	 */
+	
+	
+	
+}

@@ -1,0 +1,7 @@
+package com.zensar.payrollmodule.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface SalaryStructureRepository extends CrudRepository<T, ID> {
+
+}

@@ -1,0 +1,73 @@
+package com.zensar.payrollmodule.service;
+
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.zensar.payrollmodule.entity.Employee;
+import com.zensar.payrollmodule.entity.SalaryPaid;
+import com.zensar.payrollmodule.entity.SalaryPaidEntity;
+import com.zensar.payrollmodule.repository.EmployeeRepository;
+import com.zensar.payrollmodule.repository.EmployeeRoleMappingRepository;
+import com.zensar.payrollmodule.repository.SalaryPaidRepository;
+import com.zensar.payrollmodule.repository.SalaryStructureRepository;
+
+@Service
+public class SalaryPaidServiceImpl implements SalaryPaidService {
+
+	@Autowired
+	private SalaryPaidRepository salaryPaidRepository;
+	
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private SalaryStructureRepository salaryStructureRepository;
+	
+	@Autowired
+	private EmployeeRoleMappingRepository employeeRoleMappingRepository;
+
+	@Override
+	public SalaryPaid getPaidSalary(SalaryPaidEntity salaryPaidEntity) {
+		// TODO Auto-generated method stub
+		return salaryPaidRepository.findById(salaryPaidEntity).get();
+	}
+
+	
+	public SalaryPaid addPaidSalary() {
+		
+		SalaryPaid salaryPaid = new SalaryPaid();
+		SalaryPaidEntity salaryPaidEntity =new SalaryPaidEntity();
+		
+		for(Employee e : employeeRepository.findAll()) {
+			salaryPaidEntity.setEmployeeId(e.getEmployeeId());
+			salaryPaidEntity.setDate(LocalDate.now().withDayOfMonth(1));
+			
+			salaryPaid.setEntity(salaryPaidEntity);
+			
+			salaryPaid.setBase(salaryStructureRepository.
+					findById(employeeRoleMappingRepository.
+					findById(salaryPaidEntity.getEmployeeId()).get().getRoleId()).
+					get().
+					getBasic());
+			
+			salaryPaid.setHra(salaryStructureRepository.
+					findById(employeeRoleMappingRepository.
+					findById(salaryPaidEntity.getEmployeeId()).get().getRoleId()).
+					get().
+					getHra());
+			
+			salaryPaid.setTravelAllowance(1);
+			
+			salaryPaid.setBonus(10);
+		}
+		
+		return salaryPaidRepository.save(salaryPaid);
+	}
+	
+	
+	
+	
+	
+}

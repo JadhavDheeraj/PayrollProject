@@ -1,0 +1,14 @@
+package com.zensar.payrollmodule.service;
+
+import com.zensar.payrollmodule.entity.SalaryPaid;
+import com.zensar.payrollmodule.entity.SalaryPaidEntity;
+
+public interface SalaryPaidService {
+
+	public SalaryPaid getPaidSalary(SalaryPaidEntity salaryPaidEntity);
+	
+	//public SalaryPaid addPaidSalary(SalaryPaid salaryPaid);
+	
+	
+
+}

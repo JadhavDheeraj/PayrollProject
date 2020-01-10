@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="SalaryStructureResourceTest" project="payroll-module" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="com.zensar.payrollmodule.resourcetest.SalaryStructureResourceTest" time="0.411">
+    <testcase name="getSalaryStructureByRoleIdTest" classname="com.zensar.payrollmodule.resourcetest.SalaryStructureResourceTest" time="0.4"/>
+    <testcase name="addRoleAndSalaryTest" classname="com.zensar.payrollmodule.resourcetest.SalaryStructureResourceTest" time="0.001"/>
+    <testcase name="getAllRoleAndSalaryTest" classname="com.zensar.payrollmodule.resourcetest.SalaryStructureResourceTest" time="0.007"/>
+    <testcase name="updateRoleAndSalaryTest" classname="com.zensar.payrollmodule.resourcetest.SalaryStructureResourceTest" time="0.002"/>
+  </testsuite>
+</testrun>

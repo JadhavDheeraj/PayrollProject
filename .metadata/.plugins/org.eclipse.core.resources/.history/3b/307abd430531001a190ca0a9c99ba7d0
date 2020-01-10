@@ -1,0 +1,94 @@
+package com.zensar.payrollmodule.entity;
+
+import java.time.LocalDate;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
+@Entity
+public class Employee {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@NotNull
+	@Positive
+	private int employeeId;
+	
+	@NotNull
+	private String firstName;
+	
+	@NotNull
+	private String lastName;
+	
+	@NotNull
+	private LocalDate dateOfBirth;
+	
+	@NotNull
+	private String currentLocation;
+	
+	
+	@OneToOne(cascade = CascadeType.ALL)
+
+	@JoinTable(name = "Emp_Role_Mapping", joinColumns = @JoinColumn(name = "employeeId"), inverseJoinColumns = @JoinColumn(name = "roleId"))
+	private SalaryStructure salaryStructure;
+	 
+	
+	public Employee() {
+		super();
+	}
+	public Employee(int employeeId, String firstName, String lastName, LocalDate dateOfBirth, String currentLocation) {
+		super();
+		this.employeeId = employeeId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.currentLocation = currentLocation;
+	}
+	public int getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	public String getCurrentLocation() {
+		return currentLocation;
+	}
+	public void setCurrentLocation(String currentLocation) {
+		this.currentLocation = currentLocation;
+	}
+	@Override
+	public String toString() {
+		return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", dateOfBirth=" + dateOfBirth + ", currentLocation=" + currentLocation + "]";
+	}
+	
+	
+	
+
+}

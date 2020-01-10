@@ -1,0 +1,33 @@
+package com.zensar.payrollmodule.entity;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+
+@Entity
+public class SalaryPaid {
+	
+	@EmbeddedId
+	private SalaryPaidEntity entity;
+	
+	private double base;
+	private double hra;
+	private double travelAllowance;
+	private double bonus;
+	
+	public SalaryPaid(SalaryPaidEntity entity, double base, double hra, double travelAllowance, double bonus) {
+		super();
+		this.entity = entity;
+		this.base = base;
+		this.hra = hra;
+		this.travelAllowance = travelAllowance;
+		this.bonus = bonus;
+	}
+	public SalaryPaid() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+
+}

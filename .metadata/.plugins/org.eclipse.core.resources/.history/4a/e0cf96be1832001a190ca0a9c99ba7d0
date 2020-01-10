@@ -1,0 +1,77 @@
+package com.zensar.payrollmodule.resource;
+
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
+
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
+import com.zensar.payrollmodule.entity.SalaryPaid;
+import com.zensar.payrollmodule.entity.SalaryPaidEntity;
+import com.zensar.payrollmodule.service.SalaryPaidService;
+
+@RestController
+@RequestMapping("/payroll")
+public class SalaryPaidResource {
+
+	Integer empId;
+	LocalDate date;
+
+	@Autowired
+	private SalaryPaidService salaryPaidService;
+
+	@Autowired
+	private RestTemplateBuilder restTemplateBuilder;
+
+	@Autowired
+	private EurekaClient eurekaClient;
+
+	@GetMapping("/getsalary")
+	public SalaryPaid getPaidSalary(@RequestBody SalaryPaidEntity salaryPaidEntity) {
+
+
+		//http://localhost:8080/travelallowancebydate?startdate=2020-02-01&enddate=2020-02-28&empid=122
+
+		
+		//getTravelAllowance(employeeId,startDate.toString(),endDate.toString());
+		
+		
+		
+		  RestTemplate restTemplate = restTemplateBuilder.build();
+		  
+		  InstanceInfo info =
+		  eurekaClient.getNextServerFromEureka("travelling-service", false);
+		  
+		  String homePageUrl = info.getHomePageUrl();
+		  
+		  System.out.println("homePageUrl    ---->"+homePageUrl + "/travelallowancebydate");
+		  
+		  UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(homePageUrl)
+				  .queryParam("empId", salaryPaidEntity.getEmployeeId())
+				  .queryParam("startdate", salaryPaidEntity.getDate())
+				  .queryParam("enddate", salaryPaidEntity.getDate().with(lastDayOfMonth()));
+		  
+		  
+		  ResponseEntity<Double> exchange = restTemplate.exchange(homePageUrl,
+		  HttpMethod.GET, null, Double.class);
+		  
+		  Double entity = exchange.getBody();
+		 
+		  System.out.println(entity);
+		 
+
+		return salaryPaidService.getPaidSalary(salaryPaidEntity);
+	}
+
+}

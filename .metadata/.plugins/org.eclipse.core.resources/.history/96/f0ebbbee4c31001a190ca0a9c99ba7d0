@@ -1,0 +1,5 @@
+package com.zensar.payrollmodule.workmanagement;
+
+public class WorkManagementEntity {
+
+}

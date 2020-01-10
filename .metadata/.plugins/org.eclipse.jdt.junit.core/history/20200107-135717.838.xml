@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="EmployeeResourceTest" project="payroll-module" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="com.zensar.payrollmodule.resourcetest.EmployeeResourceTest" time="0.453">
+    <testcase name="addEmployeesTest" classname="com.zensar.payrollmodule.resourcetest.EmployeeResourceTest" time="0.442"/>
+    <testcase name="updateEmployeesTest" classname="com.zensar.payrollmodule.resourcetest.EmployeeResourceTest" time="0.002"/>
+    <testcase name="getEmployeesByIdTest" classname="com.zensar.payrollmodule.resourcetest.EmployeeResourceTest" time="0.0"/>
+    <testcase name="getAllEmployeesTest" classname="com.zensar.payrollmodule.resourcetest.EmployeeResourceTest" time="0.009"/>
+  </testsuite>
+</testrun>

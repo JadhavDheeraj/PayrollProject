@@ -1,0 +1,21 @@
+package com.zensar.payrollmodule.resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.zensar.payrollmodule.entity.Salary_Structure;
+import com.zensar.payrollmodule.service.SalaryStructureService;
+
+@RestController
+public class SalaryStructureResource {
+	
+	@Autowired
+	private SalaryStructureService salaryStructureService;
+	
+	public Salary_Structure addRoleAndSalary(@RequestBody Salary_Structure salaryStructure) {
+		
+		return salaryStructureService.addRoleAndSalary(salaryStructure);
+	}
+
+}

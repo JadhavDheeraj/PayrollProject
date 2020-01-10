@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="EmployeeResourceTest" project="payroll-module" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="com.zensar.payrollmodule.resourcetest.EmployeeResourceTest" time="0.6">
+    <testcase name="addEmployeesTest" classname="com.zensar.payrollmodule.resourcetest.EmployeeResourceTest" time="0.596"/>
+    <testcase name="getEmployeesByIdTest" classname="com.zensar.payrollmodule.resourcetest.EmployeeResourceTest" time="0.004"/>
+  </testsuite>
+</testrun>

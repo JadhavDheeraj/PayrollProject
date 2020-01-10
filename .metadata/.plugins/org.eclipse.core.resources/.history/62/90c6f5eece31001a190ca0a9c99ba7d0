@@ -1,0 +1,128 @@
+package com.zensar.payrollmodule.service;
+
+import java.time.LocalDate;
+import java.util.Iterator;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.zensar.payrollmodule.entity.Employee;
+import com.zensar.payrollmodule.entity.SalaryPaid;
+import com.zensar.payrollmodule.entity.SalaryPaidEntity;
+import com.zensar.payrollmodule.repository.EmployeeRepository;
+import com.zensar.payrollmodule.repository.EmployeeRoleMappingRepository;
+import com.zensar.payrollmodule.repository.SalaryPaidRepository;
+import com.zensar.payrollmodule.repository.SalaryStructureRepository;
+import com.zensar.payrollmodule.workmanagement.WorkManagement;
+import com.zensar.payrollmodule.workmanagement.WorkManagementRepository;
+
+@Service
+public class SalaryPaidServiceImpl implements SalaryPaidService {
+
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private SalaryStructureRepository salaryStructureRepository;
+	
+	@Autowired
+	private EmployeeRoleMappingRepository employeeRoleMappingRepository;
+	
+	@Autowired
+	private WorkManagementRepository workManagementRepository;
+
+	@Override
+	public SalaryPaid getPaidSalary(SalaryPaidEntity salaryPaidEntity) {
+		
+		SalaryPaid salaryPaid = new SalaryPaid(); 
+		
+		salaryPaid.setEntity(salaryPaidEntity);
+		  
+		  salaryPaid.setBase(salaryStructureRepository.
+		  findById(employeeRoleMappingRepository.
+		  findById(salaryPaidEntity.getEmployeeId()).get().getRoleId()). get().
+		  getBasic());
+		  
+		  salaryPaid.setHra(salaryStructureRepository.
+		  findById(employeeRoleMappingRepository.
+		  findById(salaryPaidEntity.getEmployeeId()).get().getRoleId()). get().
+		  getHra());
+		  
+		  salaryPaid.setTravelAllowance(1);  
+		  
+		  salaryPaid.setBonus(1);
+		  
+		
+		  WorkManagement workManagement =
+		  workManagementRepository.findByEmployeeId(salaryPaidEntity.getEmployeeId());
+		  System.out.println(salaryPaidEntity.getEmployeeId());
+		 // System.out.println(workManagement.getWorkCompletion());
+		  
+		 ////salaryPaid.setBonus(workManagement.getWorkCompletion());
+		 
+		
+		return salaryPaid;
+	}
+
+	/*
+	  @Override public SalaryPaid addPaidSalary() { SalaryPaid salaryPaid = new
+	  SalaryPaid(); SalaryPaidEntity salaryPaidEntity =new SalaryPaidEntity();
+	  
+	  Employee e = employeeRepository.findAll();
+	  
+	  salaryPaidEntity.setEmployeeId(e.getEmployeeId());
+	  salaryPaidEntity.setDate(LocalDate.now().withDayOfMonth(1));
+	  
+	  salaryPaid.setEntity(salaryPaidEntity);
+	  
+	  salaryPaid.setBase(salaryStructureRepository.
+	  findById(employeeRoleMappingRepository.
+	  findById(salaryPaidEntity.getEmployeeId()).get().getRoleId()). get().
+	  getBasic());
+	  
+	  salaryPaid.setHra(salaryStructureRepository.
+	  findById(employeeRoleMappingRepository.
+	  findById(salaryPaidEntity.getEmployeeId()).get().getRoleId()). get().
+	  getHra());
+	  
+	  salaryPaid.setTravelAllowance(1);
+	  
+	  salaryPaid.setBonus(10);
+	  
+	  return salaryPaidRepository.save(salaryPaid); }
+	 
+	
+	/*
+	 * public SalaryPaid addPaidSalary() {
+	 * 
+	 * SalaryPaid salaryPaid = new SalaryPaid(); SalaryPaidEntity salaryPaidEntity
+	 * =new SalaryPaidEntity();
+	 * 
+	 * for(Employee e : employeeRepository.findAll()) {
+	 * salaryPaidEntity.setEmployeeId(e.getEmployeeId());
+	 * salaryPaidEntity.setDate(LocalDate.now().withDayOfMonth(1));
+	 * 
+	 * salaryPaid.setEntity(salaryPaidEntity);
+	 * 
+	 * salaryPaid.setBase(salaryStructureRepository.
+	 * findById(employeeRoleMappingRepository.
+	 * findById(salaryPaidEntity.getEmployeeId()).get().getRoleId()). get().
+	 * getBasic());
+	 * 
+	 * salaryPaid.setHra(salaryStructureRepository.
+	 * findById(employeeRoleMappingRepository.
+	 * findById(salaryPaidEntity.getEmployeeId()).get().getRoleId()). get().
+	 * getHra());
+	 * 
+	 * salaryPaid.setTravelAllowance(1);
+	 * 
+	 * salaryPaid.setBonus(10); }
+	 * 
+	 * return salaryPaidRepository.save(salaryPaid); }
+	 */
+	
+	
+	
+	
+	
+}
